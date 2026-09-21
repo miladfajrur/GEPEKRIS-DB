@@ -1,0 +1,8 @@
+{
+  "name": "GEPEKRIS TRETES",
+  "description": "Aplikasi pendataan jemaat gereja GEPEKRIS TRETES dengan fitur realtime dan ekspor CSV.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

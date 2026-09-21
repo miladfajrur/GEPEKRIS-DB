@@ -1,0 +1,100 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    match /app_users/{userId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /finance_transactions/{txId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /members/{docId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /weekly_reports/{reportId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /media_repo/{itemId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /documents/{docId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /misi_repo/{misiId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /worship_themes/{themeId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /misi_finance/{financeId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /misi_finance_pembangunan/{financeId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+    
+    match /misi_repo_confidential/{misiId} {
+      allow read: if true;
+      allow create: if incoming().tenantId == 'gpstiaa';
+      allow update: if incoming().tenantId == 'gpstiaa';
+      allow delete: if true;
+    }
+
+    match /misi_members/{memberId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // Default match for other paths
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

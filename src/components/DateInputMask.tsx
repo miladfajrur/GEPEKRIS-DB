@@ -1,0 +1,45 @@
+import React, { useState, useEffect } from 'react';
+import { maskDateInput, parseIndonesianDateInput, toIndonesianDateInput } from '../lib/utils';
+
+export interface DateInputMaskProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  name: string;
+  value: string;
+  onChange: (e: { target: { name: string; value: string } }) => void;
+}
+
+export default function DateInputMask({ name, value, onChange, ...rest }: DateInputMaskProps) {
+  const [localValue, setLocalValue] = useState("");
+
+  useEffect(() => {
+    // When the parent (formData) provides a YYYY-MM-DD value, format it to DD/MM/YYYY for display
+    if (value && typeof value === 'string' && value.includes('-') && value.split('-')[0].length === 4) {
+      setLocalValue(toIndonesianDateInput(value));
+    } else {
+      setLocalValue(typeof value === 'string' ? value : "");
+    }
+  }, [value]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Mask as they type
+    const masked = maskDateInput(e.target.value);
+    setLocalValue(masked);
+    
+    // Attempt parse to YYYY-MM-DD to send back upwards
+    const parsed = parseIndonesianDateInput(masked);
+    onChange({
+      target: { name, value: parsed }
+      // Mock event structure expected by callers needing just e.target.name and e.target.value
+    } as any);
+  };
+
+  return (
+    <input
+      {...rest}
+      type="text"
+      name={name}
+      value={localValue}
+      onChange={handleChange}
+      maxLength={10}
+    />
+  );
+}

@@ -1,0 +1,241 @@
+{
+  "entities": {
+    "Member": {
+      "title": "Member",
+      "description": "Jemaat gereja GEPEKRIS TRETES",
+      "type": "object",
+      "properties": {
+        "nomor_anggota": { "type": "string" },
+        "nama_lengkap": { "type": "string" },
+        "jenis_kelamin": { "type": "string", "enum": ["Pria", "Wanita"] },
+        "tempat_lahir": { "type": "string" },
+        "tanggal_lahir": { "type": "string" },
+        "alamat_asal": { "type": "string" },
+        "provinsi": { "type": "string" },
+        "no_telp": { "type": "string" },
+        "jenis_baptis": { "type": "string" },
+        "keterangan_baptis": { "type": "string" },
+        "tanggal_masuk": { "type": "string" },
+        "tanggal_keluar": { "type": "string" },
+        "foto_url": { "type": "string" },
+        "tenantId": { "type": "string" }
+      },
+      "required": [
+        "nomor_anggota",
+        "nama_lengkap",
+        "jenis_kelamin",
+        "tempat_lahir",
+        "tanggal_lahir",
+        "alamat_asal",
+        "tenantId"
+      ]
+    },
+    "WeeklyReport": {
+      "title": "WeeklyReport",
+      "description": "Laporan mingguan ibadah gereja",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "tanggal_ibadah": { "type": "string" },
+        "nama_ibadah": { "type": "string" },
+        "kategori_ibadah": { "type": "string" },
+        "kehadiran_dewasa": { "type": "number" },
+        "kehadiran_pemuda": { "type": "number" },
+        "kehadiran_anak": { "type": "number" },
+        "persembahan_umum": { "type": "number" },
+        "perpuluhan": { "type": "number" },
+        "diakonia": { "type": "number" },
+        "pemasukan_lainnya": { "type": "number" },
+        "pengeluaran": { "type": "number" },
+        "keterangan": { "type": "string" }
+      },
+      "required": [
+        "tenantId",
+        "tanggal_ibadah",
+        "nama_ibadah"
+      ]
+    },
+    "FinanceTransaction": {
+      "title": "FinanceTransaction",
+      "description": "Transaksi keuangan gereja",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "date": { "type": "string" },
+        "type": { "type": "string", "enum": ["Pemasukan", "Pengeluaran"] },
+        "category": { "type": "string" },
+        "amount": { "type": "number" },
+        "description": { "type": "string" },
+        "source": { "type": "string" }
+      },
+      "required": [
+        "tenantId",
+        "date",
+        "type",
+        "category",
+        "amount",
+        "description"
+      ]
+    },
+    "MediaRepo": {
+      "title": "MediaRepo",
+      "description": "Repositori media dan multimedia",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "title": { "type": "string" },
+        "bulan": { "type": "string" },
+        "driveLink": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": [
+        "tenantId",
+        "title",
+        "bulan",
+        "driveLink"
+      ]
+    },
+    "DocumentItem": {
+      "title": "DocumentItem",
+      "description": "Dokumen surat masuk dan keluar",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string", "enum": ["Masuk", "Keluar"] },
+        "date": { "type": "string" },
+        "driveLink": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": [
+        "tenantId",
+        "title",
+        "category",
+        "date",
+        "driveLink"
+      ]
+    },
+    "WorshipTheme": {
+      "title": "WorshipTheme",
+      "description": "Tema ibadah gereja",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "type": { "type": "string" },
+        "date": { "type": "string" },
+        "theme": { "type": "string" },
+        "speaker": { "type": "string" }
+      },
+      "required": [
+        "tenantId",
+        "type",
+        "date",
+        "theme",
+        "speaker"
+      ]
+    },
+    "MisiFinance": {
+      "title": "MisiFinance",
+      "description": "Laporan keuangan misi",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "date": { "type": "string" },
+        "type": { "type": "string", "enum": ["Pemasukan", "Pengeluaran"] },
+        "category": { "type": "string" },
+        "amount": { "type": "number" },
+        "description": { "type": "string" }
+      },
+      "required": [
+        "tenantId",
+        "date",
+        "type",
+        "category",
+        "amount"
+      ]
+    },
+    "MisiMember": {
+      "title": "MisiMember",
+      "description": "Anggota jemaat misi",
+      "type": "object",
+      "properties": {
+        "nama": { "type": "string" },
+        "lokasi": { "type": "string" }
+      },
+      "required": [
+        "nama"
+      ]
+    },
+    "AppAccount": {
+      "title": "AppAccount",
+      "description": "Akun login pengguna aplikasi dan batasan hak aksesnya",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string" },
+        "permissions": { "type": "object" },
+        "isActive": { "type": "boolean" },
+        "notes": { "type": "string" },
+        "tenantId": { "type": "string" }
+      },
+      "required": [
+        "username",
+        "displayName",
+        "role",
+        "tenantId"
+      ]
+    }
+  },
+  "firestore": {
+    "/app_users/{userId}": {
+      "schema": { "$ref": "#/entities/AppAccount" },
+      "description": "Collection of application user accounts and permissions"
+    },
+    "/members/{memberId}": {
+      "schema": { "$ref": "#/entities/Member" },
+      "description": "Collection of church members"
+    },
+    "/weekly_reports/{reportId}": {
+      "schema": { "$ref": "#/entities/WeeklyReport" },
+      "description": "Collection of weekly service reports"
+    },
+    "/finance_transactions/{txId}": {
+      "schema": { "$ref": "#/entities/FinanceTransaction" },
+      "description": "Collection of general church finance transactions"
+    },
+    "/media_repo/{itemId}": {
+      "schema": { "$ref": "#/entities/MediaRepo" },
+      "description": "Collection of church media repository items"
+    },
+    "/documents/{docId}": {
+      "schema": { "$ref": "#/entities/DocumentItem" },
+      "description": "Collection of official church letters and documents"
+    },
+    "/worship_themes/{themeId}": {
+      "schema": { "$ref": "#/entities/WorshipTheme" },
+      "description": "Collection of weekly worship themes and liturgy"
+    },
+    "/misi_finance/{financeId}": {
+      "schema": { "$ref": "#/entities/MisiFinance" },
+      "description": "Collection of mission finance records"
+    },
+    "/misi_finance_pembangunan/{financeId}": {
+      "schema": { "$ref": "#/entities/MisiFinance" },
+      "description": "Collection of mission development finance records"
+    },
+    "/misi_repo/{misiId}": {
+      "schema": { "$ref": "#/entities/MediaRepo" },
+      "description": "Collection of mission media documents"
+    },
+    "/misi_repo_confidential/{misiId}": {
+      "schema": { "$ref": "#/entities/MediaRepo" },
+      "description": "Collection of confidential mission documents"
+    },
+    "/misi_members/{memberId}": {
+      "schema": { "$ref": "#/entities/MisiMember" },
+      "description": "Collection of mission members"
+    }
+  }
+}

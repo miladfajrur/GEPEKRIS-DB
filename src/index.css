@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@media print {
+  /* Hide unnecessary UI elements */
+  aside,
+  header,
+  nav,
+  button,
+  .print-hidden,
+  .notification-container {
+    display: none !important;
+  }
+
+  /* Reset layout constraints to allow full page printing */
+  body, html, #root, main, .overflow-auto, .overflow-y-auto, .overflow-hidden, .min-h-0, .h-full, .h-screen, .h-\[100dvh\] {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: transparent !important;
+    color: black !important;
+  }
+
+  /* Ensure tables show all rows properly */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+  }
+
+  th, td {
+    border: 1px solid #ccc !important;
+    white-space: normal !important;
+    background-color: transparent !important;
+  }
+
+  /* Try to hide standard Action columns if named strictly or using tailwind print:hidden */
+  tr > th:last-child:empty {
+    display: none !important;
+  }
+  
+  tr > td:last-child > .flex.justify-end {
+    display: none !important;
+  }
+}
+
